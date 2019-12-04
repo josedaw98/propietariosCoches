@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--LENGUAJE ESPAÑOL-->
+<html lang="es">
+
+<head>
+    <!--CODIFICACIÓN UTF8-->
+    <meta charset="UTF-8">
+    <!--LINK QUE CONECTA CON LA HOJA DE ESTILOS-->
+    <link rel="stylesheet" type="text/css" href="estilos/estilos.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <!--TITULO EN LA PESTAÑA DE LA PÁGINA-->
+    <title>MI APLICACIÓN</title>
+</head>
+
+<body>
+    <!--INICIAMOS EL HEADER-->
+    <header class="cabecera">
+        <!--NAV EN EL QUE VAMOS A PONER NUESTRO BARRA MENÚ DEL HEADER-->
+        <nav class="menu" id="menuHeader">
+            <!--TENEMOS UNA LISTA DESORDENADA CON TODOS LOS ELEMENTOS DE LA LISTA EN LOS QUE HAY ENLACES A DISTINTOS SITIOS DEL MENU-->
+            <ul class="listaDesordenada" id="listaMenu">
+                <li class="elementoLista" id="elementoPropietarios"><a href="#" th:href="@{/propietarios}">Propietarios</a></li>
+                <li class="elementoLista" id="elementoCoches"><a href="#" th:href="@{/coches}">Coches</a></li>    
+            </ul>
+        </nav>
+
+    </header>
+    
+    <!-- DIV EN EL QUE VAMOS A PONER LOS DATOS DE LOS PROPIETARIOS -->
+		<div th:switch="${#lists.isEmpty(propietarios)}">
+	  
+		<div id="listaVacia" th:case="true">
+	  
+	  		<p>Lista de propietarios vacía.</p>
+	  
+	  
+		</div>
+		
+		<div id="listaRellena" th:case="false">
+			  
+		    <table id="tablaPropietarios" class="tabla" border="1">
+		    
+		      <tr>
+		        <th>ID</th>
+		        <th>Nombre</th>
+		        <th>Edad</th>
+		        <th>Email</th>
+		        <!-- <th>Coche</th> -->
+		        <th>Carnet</th>
+		        <th>Mensaje</th>
+		        <th></th>
+		        <th></th>
+		      </tr>
+		      
+		      <tr th:each="propietario : ${propietarios}">
+		        <td th:text="${propietario.id}+' ['+${propietarioStat.count}+']'">ID</td>
+		        <td th:text="${propietario.nombre}">Nombre</td>
+		        <td th:text="${propietario.edad}">Edad</td>
+		        <td th:text="${propietario.email}">Email</td>
+		        <!-- <td th:each="coche:${coches}" th:if="${coche.id}==${propietario.coche}" th:text="${coche.marca}">Modelo</td> -->
+		        
+		        
+		        <td th:if="${propietario.carnet}" th:text="'Con carnet'">Con carnet</td>
+		        <td th:unless="${propietario.carnet}" th:text="'Sin carnet'">Sin carnet</td>
+		      
+		        <td th:text="${propietario.mensaje}">Mensaje</td>
+		        
+		        <td><a href="#" th:href="@{/eliminarPropietario/{id}(id=${propietario.id})}">Eliminar</a></td>
+		        <td><a href="#" th:href="@{/editarPropietario/{id}(id=${propietario.id})}">Editar</a></td>
+		      </tr>	
+		    </table>
+		</div>
+		</div>
+		
+		<form action="#" th:action="@{/addPropietario}"  th:object="${propietario}" method="post">
+    	
+	    	<p>Nombre: <input type="text" th:field="*{nombre}" placeholder="Inserte su nombre"/></p>
+	        <p>Edad: <input type="number" th:field="*{edad}"  placeholder="Inserte su edad"/></p>
+	        <p>Email: <input type="email" th:field="*{email}" placeholder="Inserte su email"/></p>
+	        
+
+	        
+	      	<p>
+		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
+					Mensaje de texto.
+				</textarea>
+	        </p>          
+	 
+	         <p>
+		        Carnet: <input type="checkbox" th:field="*{carnet}">
+	        </p>      
+	       
+	        <p>	
+	        	<input type="submit" value="Submit" /> 
+	        	<input type="reset" value="Reset" />
+	        </p>
+		</form>
+    
+</body>
+</html>

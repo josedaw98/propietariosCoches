@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--LENGUAJE ESPAÑOL-->
+<html lang="es">
+
+<head>
+    <!--CODIFICACIÓN UTF8-->
+    <meta charset="UTF-8">
+    <!--LINK QUE CONECTA CON LA HOJA DE ESTILOS-->
+    <link rel="stylesheet" type="text/css" href="estilos/estilos.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <!--TITULO EN LA PESTAÑA DE LA PÁGINA-->
+    <title>MI APLICACIÓN</title>
+</head>
+
+<body>
+    <!--INICIAMOS EL HEADER-->
+    <header class="cabecera">
+        <!--NAV EN EL QUE VAMOS A PONER NUESTRO BARRA MENÚ DEL HEADER-->
+        <nav class="menu" id="menuHeader">
+            <!--TENEMOS UNA LISTA DESORDENADA CON TODOS LOS ELEMENTOS DE LA LISTA EN LOS QUE HAY ENLACES A DISTINTOS SITIOS DEL MENU-->
+            <ul class="listaDesordenada" id="listaMenu">
+                <li class="elementoLista" id="elementoPropietarios"><a href="#" th:href="@{/propietarios}">Propietarios</a></li>
+                <li class="elementoLista" id="elementoCoches"><a href="#" th:href="@{/coches}">Coches</a></li>    
+            </ul>
+        </nav>
+
+    </header>
+		
+		<form action="#" th:action="@{/updateCoche}"  th:object="${coche}" method="post">
+    	
+	    	<p>Marca: <input type="text" th:field="*{marca}" placeholder="Inserte la marca de su coche"/></p>
+	    	<p>Color: <input type="text" th:field="*{color}" placeholder="Inserte el color de su coche"/></p>
+	    	<p>Antigüedad: <input type="number" th:field="*{antiguedad}" placeholder="Inserte la antigüedad de su coche"/></p>
+	    	<p>Rango: <input type="range" th:field="*{rango}" min="0" max="10"></p>
+	        
+	      	<p>
+		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
+					Mensaje de texto.
+				</textarea>
+	        </p>            
+	       
+	        <p>	
+	        	<input type="submit" value="Submit" /> 
+	        	<input type="reset" value="Reset" />
+	        </p>
+		</form>
+</body>
+</html>
