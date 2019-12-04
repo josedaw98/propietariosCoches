@@ -1,1 +1,35 @@
-<p>PROPIETARIOS</p>
+<!DOCTYPE html>
+<!--LENGUAJE ESPAÑOL-->
+<html lang="es">
+
+<head>
+    <!--CODIFICACIÓN UTF8-->
+    <meta charset="UTF-8">
+    <!--LINK QUE CONECTA CON LA HOJA DE ESTILOS-->
+    <link rel="stylesheet" type="text/css" href="estilos/estilos.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <!--TITULO EN LA PESTAÑA DE LA PÁGINA-->
+    <title>MI APLICACIÓN</title>
+</head>
+
+<body>
+    <!--INICIAMOS EL HEADER-->
+    <header class="cabecera">
+        <!--NAV EN EL QUE VAMOS A PONER NUESTRO BARRA MENÚ DEL HEADER-->
+        <nav class="menu" id="menuHeader">
+            <!--TENEMOS UNA LISTA DESORDENADA CON TODOS LOS ELEMENTOS DE LA LISTA EN LOS QUE HAY ENLACES A DISTINTOS SITIOS DEL MENU-->
+            <ul class="listaDesordenada" id="listaMenu">
+                <li class="elementoLista" id="elementoPropietarios"><a href="#" th:href="@{/propietarios}">Propietarios</a></li>
+                <li class="elementoLista" id="elementoCoches"><a href="#" th:href="@{/coches}">Coches</a></li>    
+            </ul>
+        </nav>
+
+    </header>
+    
+    <!-- DIV EN EL QUE VAMOS A PONER LOS DATOS DE LOS PROPIETARIOS -->
+    <div>
+    	PROPIETARIOS
+    </div>
+    
+</body>
+</html>
