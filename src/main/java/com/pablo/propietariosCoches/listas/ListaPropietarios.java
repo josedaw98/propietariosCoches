@@ -45,7 +45,7 @@ public class ListaPropietarios {
 	 * @param idBuscado
 	 * @return devuelve un int diciendo el indice
 	 */
-	private int busquedaPorId(int idBuscado) {
+	private int buscarDondeEsta(int idBuscado) {
 		
 		// Iniciamos con una bandera indicando que no está encontrado
 		boolean encontrado = false;
@@ -64,17 +64,16 @@ public class ListaPropietarios {
 			else indice ++;
 		}
 		if(encontrado) return indice; else return -1;
-	}
-	
+	}	
 	
 	/**
 	 * Devuelve un propietario en concreto, 
 	 * @param id
 	 * @return si lo encuentra devuelve el objeto entero
 	 */
-	public PropietarioBean getAutor(int idBuscado) {
+	public PropietarioBean getPropietario(int idBuscado) {
 		
-		int dondeEsta = busquedaPorId(idBuscado);
+		int dondeEsta = buscarDondeEsta(idBuscado);
 		if(dondeEsta>=0) {
 			
 			return lista.get(dondeEsta);
@@ -92,7 +91,7 @@ public class ListaPropietarios {
 		int numero = (int) (Math.random()*100+1);	
 		
 		// Busco hasta que no lo encuentro
-		while (busquedaPorId(numero) != -1) {
+		while (buscarDondeEsta(numero) != -1) {
 			
 			numero = (int) (Math.random()*100+1);
 		}
@@ -126,7 +125,7 @@ public class ListaPropietarios {
 	 */
 	public void updatePropietario(PropietarioBean propietario) {
 		
-		int posicion = busquedaPorId(propietario.getId());
+		int posicion = buscarDondeEsta(propietario.getId());
 		lista.set(posicion, propietario);
 	}
 	
@@ -138,7 +137,7 @@ public class ListaPropietarios {
 	public void delPropietario(int idBuscado) {
 		
 		// Pregunto que si existe el ID
-		int dondeEsta = busquedaPorId(idBuscado);
+		int dondeEsta = buscarDondeEsta(idBuscado);
 		
 		// Si lo encuentra, lo borra
 		if(dondeEsta>=0) {

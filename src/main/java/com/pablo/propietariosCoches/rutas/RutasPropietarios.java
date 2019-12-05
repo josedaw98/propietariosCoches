@@ -1,7 +1,8 @@
 package com.pablo.propietariosCoches.rutas;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,43 +40,64 @@ public class RutasPropietarios {
 	
 	
 	@PostMapping("/addPropietario")
-	public String addPropietario(@ModelAttribute PropietarioBean propietario) {
+	public ModelAndView addPropietario(@ModelAttribute PropietarioBean propietario) {
 		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:/propietarios");
+		
+		
+		model.addObject("coches",listaCoches);
+		
+		
+		model.addObject("propietario",new PropietarioBean());
 		listaPropietarios.addPropietario(propietario);
 		
-		return "redirect:/propietarios"; 		
+		model.addObject("propietarios", listaPropietarios.getDatos());
+
+		
+		return model; 		
 		
 	}
 	
 	
 	@GetMapping("/editarPropietario/{id}")
-	public String editarPropietario(@PathVariable Integer id,
-								Model model) {
+	public ModelAndView editarPropietario(@PathVariable Integer id) {
 
-		PropietarioBean propietario = listaPropietarios.getAutor(id);
-		model.addAttribute("propietario",propietario);
+		ModelAndView model = new ModelAndView();
 		
-		return "/Propietarios/editarPropietario"; 	
+		
+		model.addObject("coches",listaCoches.getDatos());
+		
+		PropietarioBean propietario = listaPropietarios.getPropietario(id);
+
+		model.setViewName("Propietarios/editarPropietario");
+		model.addObject("propietario",propietario);
+		
+		return model; 	
 	}
 	
 	@PostMapping("/updatePropietario")
-	public String updatePropietario(@ModelAttribute PropietarioBean propietario) {
+	public ModelAndView updatePropietario(@ModelAttribute PropietarioBean propietario) {
 		
 		listaPropietarios.updatePropietario(propietario);
 		
-		return "redirect:/propietarios"; 		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:/propietarios");
+		
+		return model; 		
 		
 	}
 	
 	@GetMapping("/eliminarPropietario/{id}")
-	public String eliminarPropietario(@PathVariable Integer id,
-									Model model) {
+	public ModelAndView eliminarPropietario(@PathVariable Integer id) {
 		
 		listaPropietarios.delPropietario(id);
 		
-		return("redirect:/propietarios");
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:/propietarios");
+		
+		return model; 
 
 	}
-	
 
 }

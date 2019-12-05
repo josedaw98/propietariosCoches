@@ -38,40 +38,55 @@ public class RutasCoches {
 	
 	
 	@PostMapping("/addCoche")
-	public String addCoche(@ModelAttribute CocheBean coche) {
+	public ModelAndView addCoche(@ModelAttribute CocheBean coche) {
 		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("Coches/coches");
+		
+		model.addObject("coche",new CocheBean());
 		listaCoches.addCoche(coche);
 		
-		return "redirect:/coches"; 		
+		model.addObject("coches", listaCoches.getDatos());
+
+		
+		return model; 		
 		
 	}
 	
 	
 	@GetMapping("/editarCoche/{id}")
-	public String editarCoche(@PathVariable Integer id,
-								Model model) {
+	public ModelAndView editarCoche(@PathVariable Integer id) {
 
 		CocheBean coche = listaCoches.getCoche(id);
-		model.addAttribute("coche",coche);
 		
-		return "/Coches/editarCoche"; 	
+		ModelAndView model = new ModelAndView();
+		model.setViewName("Coches/editarCoche");
+		model.addObject("coche",coche);
+		
+		return model; 	
 	}
 	
 	@PostMapping("/updateCoche")
-	public String updateCoche(@ModelAttribute CocheBean coche) {
+	public ModelAndView updateCoche(@ModelAttribute CocheBean coche) {
 		
 		listaCoches.updateCoche(coche);
-
-		return "redirect:/coches"; 		
+		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:/coches");
+			
+		return model; 		
+		
 	}
 	
 	@GetMapping("/eliminarCoche/{id}")
-	public String eliminarCoche(@PathVariable Integer id,
-									Model model) {
+	public ModelAndView eliminarCoche(@PathVariable Integer id) {
 		
 		listaCoches.delCoche(id);
 		
-		return("redirect:/coches");
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:/coches");
+		
+		return model; 
 
 	}
 }

@@ -3,7 +3,7 @@ package com.pablo.propietariosCoches.beans;
 public class PropietarioBean {
 
 	
-	private String nombre, email, modelo, mensaje;
+	private String nombre, email, modelo, mensaje, coche;
 	private Integer id, edad;
 	private boolean carnet;
 	
@@ -48,6 +48,12 @@ public class PropietarioBean {
 	}
 	public void setCarnet(boolean carnet) {
 		this.carnet = carnet;
+	}
+	public String getCoche() {
+		return coche;
+	}
+	public void setCoche(String coche) {
+		this.coche = coche;
 	}
 	
 	

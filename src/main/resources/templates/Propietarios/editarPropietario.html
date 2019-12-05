@@ -32,8 +32,12 @@
 	        <p>Edad: <input type="number" th:field="*{edad}"  placeholder="Inserte su edad"/></p>
 	        <p>Email: <input type="email" th:field="*{email}" placeholder="Inserte su email"/></p>
 	        
-
-	        
+	       <p>
+        	<select th:field="*{coche}">
+        		<option th:each="cocheOpt : ${coches}" th:value="${cocheOpt.id}" th:text="${cocheOpt.marca}"></option>
+        	</select>
+	        </p>
+	      
 	      	<p>
 		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
 					Mensaje de texto.
@@ -49,6 +53,5 @@
 	        	<input type="reset" value="Reset" />
 	        </p>
 		</form>
-    
 </body>
 </html>

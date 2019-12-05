@@ -45,7 +45,7 @@
 		        <th>Nombre</th>
 		        <th>Edad</th>
 		        <th>Email</th>
-		        <!-- <th>Coche</th> -->
+		        <th>Coche</th>
 		        <th>Carnet</th>
 		        <th>Mensaje</th>
 		        <th></th>
@@ -57,7 +57,9 @@
 		        <td th:text="${propietario.nombre}">Nombre</td>
 		        <td th:text="${propietario.edad}">Edad</td>
 		        <td th:text="${propietario.email}">Email</td>
-		        <!-- <td th:each="coche:${coches}" th:if="${coche.id}==${propietario.coche}" th:text="${coche.marca}">Modelo</td> -->
+		        <!-- <td th:each="coche : ${coches}" th:if="${propietario.coche} == ${coche.id}" th:text="${coche.marca}">coche</td> -->
+		        <!-- NO ME SALE LO DE MOSTRAR EL NOMBRE DEL COCHE EN VEZ DEL ID -->
+		        <td th:text="${propietario.coche}">Id coche</td>
 		        
 		        
 		        <td th:if="${propietario.carnet}" th:text="'Con carnet'">Con carnet</td>
@@ -78,8 +80,12 @@
 	        <p>Edad: <input type="number" th:field="*{edad}"  placeholder="Inserte su edad"/></p>
 	        <p>Email: <input type="email" th:field="*{email}" placeholder="Inserte su email"/></p>
 	        
-
-	        
+	       <p>
+        	<select th:field="*{coche}">
+        		<option th:each="cocheOpt : ${coches}" th:value="${cocheOpt.id}" th:text="${cocheOpt.marca}"></option>
+        	</select>
+	        </p>
+	      
 	      	<p>
 		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
 					Mensaje de texto.
