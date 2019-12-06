@@ -1,29 +1,41 @@
-<!DOCTYPE html>
-<!--LENGUAJE ESPAÑOL-->
-<html lang="es">
+<!doctype html>
+<html lang="es" xlmns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+   	<link rel="stylesheet" type="text/css" media="all" href="../../Estilos/Global/estilosGlobal.css" th:href="@{/Estilos/Global/estilosGlobal.css}" />
 
-<head>
-    <!--CODIFICACIÓN UTF8-->
-    <meta charset="UTF-8">
-    <!--LINK QUE CONECTA CON LA HOJA DE ESTILOS-->
-    <link rel="stylesheet" type="text/css" href="estilos/estilos.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <!--TITULO EN LA PESTAÑA DE LA PÁGINA-->
-    <title>MI APLICACIÓN</title>
+    <title>Mi proyecto</title>
 </head>
 
 <body>
     <!--INICIAMOS EL HEADER-->
     <header class="cabecera">
-        <!--NAV EN EL QUE VAMOS A PONER NUESTRO BARRA MENÚ DEL HEADER-->
-        <nav class="menu" id="menuHeader">
-            <!--TENEMOS UNA LISTA DESORDENADA CON TODOS LOS ELEMENTOS DE LA LISTA EN LOS QUE HAY ENLACES A DISTINTOS SITIOS DEL MENU-->
-            <ul class="listaDesordenada" id="listaMenu">
-                <li class="elementoLista" id="elementoPropietarios"><a href="#" th:href="@{/propietarios}">Propietarios</a></li>
-                <li class="elementoLista" id="elementoCoches"><a href="#" th:href="@{/coches}">Coches</a></li>    
-            </ul>
+        <!--BG-DARK PARA FONDO DEL MENU OSCURO, QUITAMOS EL NAVBAR LIGHT Y LE PONES EL TEXTO EN BLANCO CON TEXT-LIGHT-->
+        <nav class="navbar navbar-expand-lg bg-dark text-light">
+            <a class="navbar-brand" th:href="@{/}">Inicio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/propietarios}">Propietarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/coches}">Coches</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    Mi primer proyecto en Spring
+                </span>
+            </div>
         </nav>
-
     </header>
 		
 		<form action="#" th:action="@{/updatePropietario}"  th:object="${propietario}" method="post">

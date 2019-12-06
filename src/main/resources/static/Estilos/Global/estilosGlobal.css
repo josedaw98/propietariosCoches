@@ -1,0 +1,9 @@
+body{
+    background-image: url("https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiu1s2wk5_mAhUNuRoKHYSLAeUQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.revistagq.com%2Fla-buena-vida%2Fmotor%2Fgalerias%2Flos-10-coches-mas-caros-del-mundo%2F10624&psig=AOvVaw0QUcdI-wB-oWnC3vS2HrCk&ust=1575657393868949");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+#titulo{
+    margin-top: 1em;
+    margin-left: 20%;
+}
