@@ -7,7 +7,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
    	<link rel="stylesheet" type="text/css" media="all" href="../../Estilos/Global/estilosGlobal.css" th:href="@{/Estilos/Global/estilosGlobal.css}" />
-
     <!--TITULO EN LA PESTAÑA DE LA PÁGINA-->
     <title>Mi proyecto</title>
 </head>
@@ -42,77 +41,92 @@
 		<div th:switch="${#lists.isEmpty(propietarios)}">
 	  
 		<div id="listaVacia" th:case="true">
-	  
-	  		<p>Lista de propietarios vacía.</p>
-	  
-	  
+	  		<h1 id="titulo" class="display-4 text-muted">Lista de propietarios vacía.</h1>
 		</div>
 		
 		<div id="listaRellena" th:case="false">
-			  
-		    <table id="tablaPropietarios" class="tabla" border="1">
+			
+			<div id="tituloListaLlena">
+				<h1 id="titulo" class="display-4 text-muted">Aquí tienes a tus propietarios.</h1>
+			</div>
+			
+		    <table id="tabla" class="table table-dark">
 		    
 		      <tr>
-		        <th>ID</th>
-		        <th>Nombre</th>
-		        <th>Edad</th>
-		        <th>Email</th>
-		        <th>Coche</th>
-		        <th>Carnet</th>
-		        <th>Mensaje</th>
-		        <th></th>
-		        <th></th>
+		        <th scope="col">ID</th>
+		        <th scope="col">Nombre</th>
+		        <th scope="col">Edad</th>
+		        <th scope="col">Email</th>
+		        <th scope="col">Coche</th>
+		        <th scope="col">Carnet</th>
+		        <th scope="col">Mensaje</th>
+		        <th scope="col"></th>
+		        <th scope="col"></th>
 		      </tr>
 		      
 		      <tr th:each="propietario : ${propietarios}">
-		        <td th:text="${propietario.id}+' ['+${propietarioStat.count}+']'">ID</td>
-		        <td th:text="${propietario.nombre}">Nombre</td>
-		        <td th:text="${propietario.edad}">Edad</td>
-		        <td th:text="${propietario.email}">Email</td>
+		        <td scope="row" th:text="${propietario.id}+' ['+${propietarioStat.count}+']'">ID</td>
+		        <td scope="row" th:text="${propietario.nombre}">Nombre</td>
+		        <td scope="row" th:text="${propietario.edad}">Edad</td>
+		        <td scope="row" th:text="${propietario.email}">Email</td>
 		        <!-- <td th:each="coche : ${coches}" th:if="${propietario.coche} == ${coche.id}" th:text="${coche.marca}">coche</td> -->
 		        <!-- NO ME SALE LO DE MOSTRAR EL NOMBRE DEL COCHE EN VEZ DEL ID -->
-		        <td th:text="${propietario.coche}">Id coche</td>
+		        <td scope="row" th:text="${propietario.coche}">Id coche</td>
 		        
 		        
-		        <td th:if="${propietario.carnet}" th:text="'Con carnet'">Con carnet</td>
-		        <td th:unless="${propietario.carnet}" th:text="'Sin carnet'">Sin carnet</td>
+		        <td scope="row" th:if="${propietario.carnet}" th:text="'Con carnet'">Con carnet</td>
+		        <td scope="row" th:unless="${propietario.carnet}" th:text="'Sin carnet'">Sin carnet</td>
 		      
-		        <td th:text="${propietario.mensaje}">Mensaje</td>
+		        <td scope="row" th:text="${propietario.mensaje}">Mensaje</td>
 		        
-		        <td><a href="#" th:href="@{/eliminarPropietario/{id}(id=${propietario.id})}">Eliminar</a></td>
-		        <td><a href="#" th:href="@{/editarPropietario/{id}(id=${propietario.id})}">Editar</a></td>
+		        <td scope="row"><a href="#" th:href="@{/eliminarPropietario/{id}(id=${propietario.id})}">Eliminar</a></td>
+		        <td scope="row"><a href="#" th:href="@{/editarPropietario/{id}(id=${propietario.id})}">Editar</a></td>
 		      </tr>	
 		    </table>
 		</div>
 		</div>
-		
+		<div id="formulario">
 		<form action="#" th:action="@{/addPropietario}"  th:object="${propietario}" method="post">
-    	
-	    	<p>Nombre: <input type="text" th:field="*{nombre}" placeholder="Inserte su nombre"/></p>
-	        <p>Edad: <input type="number" th:field="*{edad}"  placeholder="Inserte su edad"/></p>
-	        <p>Email: <input type="email" th:field="*{email}" placeholder="Inserte su email"/></p>
-	        
-	       <p>
-        	<select th:field="*{coche}">
-        		<option th:each="cocheOpt : ${coches}" th:value="${cocheOpt.id}" th:text="${cocheOpt.marca}"></option>
-        	</select>
-	        </p>
-	      
-	      	<p>
-		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
-					Mensaje de texto.
-				</textarea>
-	        </p>          
-	 
-	         <p>
-		        Carnet: <input type="checkbox" th:field="*{carnet}">
-	        </p>      
-	       
-	        <p>	
-	        	<input type="submit" value="Submit" /> 
-	        	<input type="reset" value="Reset" />
-	        </p>
+		
+			<div class="form-group">
+                <label for="nombre" class="mr-sm-2">Nombre:</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{nombre}" placeholder="Introduce su nombre" id="nombre">
+            </div>    
+                
+			<div class="form-group">
+                <label for="edad" class="mr-sm-2">Edad:</label>
+                <input type="number" class="form-control mb-2 mr-sm-2" th:field="*{edad}" placeholder="Introduce su edad" id="edad">
+            </div>
+            
+			<div class="form-group">
+                <label for="email" class="mr-sm-2">Email:</label>
+                <input type="email" class="form-control mb-2 mr-sm-2" th:field="*{email}" placeholder="Introduce su email" id="email">
+            </div>   
+                
+            <div class="form-group">    
+                <label for="sel1">Seleccione su coche:</label>
+                    <select class="form-control" id="sel1" th:field="*{coche}">
+                        <option th:each="cocheOpt : ${coches}" th:value="${cocheOpt.id}" th:text="${cocheOpt.marca}"></option>
+                    </select>	
+             </div>   
+                	
+			<div class="form-group">
+                <label for="comment">Más info:</label>
+                <textarea class="form-control" th:field="*{mensaje}" rows="5" id="comment" placeholder="Introduce un mensaje adicional"></textarea>
+			</div>
+			
+			<div class="form-group">
+		        <div class="custom-control custom-switch">   
+				 	<input type="checkbox" class="custom-control-input" id="customSwitch1" th:field="*{carnet}">
+				 	<label class="custom-control-label" for="customSwitch1">Carnet </label>	
+				</div>
+	        </div>   
+	          
+	       	<div class="form-group">	
+	        	<button type="submit" value="Submit" class="btn btn-secondary btn-sm">Enviar</button>
+	        	<button type="reset" value="Reset" class="btn btn-secondary btn-sm">Borrar</button>
+	        </div>
 		</form>
-    
+		</div>
 </body>
 </html>

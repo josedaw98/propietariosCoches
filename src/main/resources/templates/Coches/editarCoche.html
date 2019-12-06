@@ -38,23 +38,39 @@
         </nav>
     </header>
 		
-		<form action="#" th:action="@{/updateCoche}"  th:object="${coche}" method="post">
-    	
-	    	<p>Marca: <input type="text" th:field="*{marca}" placeholder="Inserte la marca de su coche"/></p>
-	    	<p>Color: <input type="text" th:field="*{color}" placeholder="Inserte el color de su coche"/></p>
-	    	<p>Antigüedad: <input type="number" th:field="*{antiguedad}" placeholder="Inserte la antigüedad de su coche"/></p>
-	    	<p>Rango: <input type="range" th:field="*{rango}" min="0" max="10"></p>
-	        
-	      	<p>
-		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
-					Mensaje de texto.
-				</textarea>
-	        </p>            
-	       
-	        <p>	
-	        	<input type="submit" value="Submit" /> 
-	        	<input type="reset" value="Reset" />
-	        </p>
-		</form>
+	  <div id="formulario">	
+      <form action="#" th:action="@{/updateCoche}"  th:object="${coche}" method="post">
+         
+         <div class="form-group">
+            <label for="marca" class="mr-sm-2">Marca:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{marca}" placeholder="Introduce la marca de su coche" id="marca">
+         </div>
+
+         <div class="form-group">
+            <label for="color" class="mr-sm-2">Color:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{color}" placeholder="Introduce el color de su coche" id="color">
+         </div>
+
+         <div class="form-group">
+            <label for="antiguedad" class="mr-sm-2">Antigüedad:</label>
+            <input type="number" class="form-control mb-2 mr-sm-2" th:field="*{antiguedad}" placeholder="Introduce la antiguedad de su coche" id="antiguedad">
+         </div>
+
+         <div class="form-group">
+            <label for="formControlRange">Rango:</label>
+            <input type="range" class="form-control-range" id="formControlRange" th:field="*{rango}" min="0" max="10">
+         </div>
+
+         <div class="form-group">
+          <label for="comment">Más info:</label>
+          <textarea class="form-control" th:field="*{mensaje}" rows="5" id="comment" placeholder="Introduce un mensaje adicional"></textarea>     
+         </div>
+
+	      <div class="form-group">	
+	        	<button type="submit" value="Submit" class="btn btn-secondary btn-sm">Enviar</button>
+	        	<button type="reset" value="Reset" class="btn btn-secondary btn-sm">Borrar</button>
+	      </div>
+      </form>
+    </div> 
 </body>
 </html>

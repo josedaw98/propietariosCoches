@@ -7,7 +7,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
    	<link rel="stylesheet" type="text/css" media="all" href="../../Estilos/Global/estilosGlobal.css" th:href="@{/Estilos/Global/estilosGlobal.css}" />
-
     <!--TITULO EN LA PESTAÑA DE LA PÁGINA-->
     <title>Mi proyecto</title>
 </head>
@@ -42,59 +41,75 @@
 		<div th:switch="${#lists.isEmpty(coches)}">
 	  
 		<div id="listaVacia" th:case="true">
-	  
-	  		<p>Lista de coches vacía.</p>
-	  
-	  
+	  		<h1 id="titulo" class="display-4 text-muted">Lista de coches vacía.</h1>
 		</div>
 		
 		<div id="listaRellena" th:case="false">
-			  
-		    <table id="tablaCoches" class="tabla" border="1">
+		
+			<div id="tituloListaLlena">
+				<h1 id="titulo" class="display-4 text-muted">Aquí tienes a tus coches.</h1>
+			</div>
+			
+		    <table id="tabla" class="table table-dark">
 		    
 		      <tr>
-		        <th>ID</th>
-		        <th>Marca</th>
-		        <th>Color</th>
-		        <th>Antiguedad</th>
-		        <th>Rango</th>
-		        <th>Mensaje</th>
-		        <th></th>
-		        <th></th>
+		        <th scope="col">ID</th>
+		        <th scope="col">Marca</th>
+		        <th scope="col">Color</th>
+		        <th scope="col">Antiguedad</th>
+		        <th scope="col">Rango</th>
+		        <th scope="col">Mensaje</th>
+		        <th scope="col"></th>
+		        <th scope="col"></th>
 		      </tr>
 		      
 		      <tr th:each="coche : ${coches}">
-		        <td th:text="${coche.id}+' ['+${cocheStat.count}+']'">ID</td>
-		        <td th:text="${coche.marca}">Marca</td>
-		        <td th:text="${coche.color}">Color</td>
-		        <td th:text="${coche.antiguedad}">Antiguedad</td>		             
-		        <td th:text="${coche.rango}">Rango</td>
-		        <td th:text="${coche.mensaje}">Mensaje</td>
+		        <td scope="row" th:text="${coche.id}+' ['+${cocheStat.count}+']'">ID</td>
+		        <td scope="row" th:text="${coche.marca}">Marca</td>
+		        <td scope="row" th:text="${coche.color}">Color</td>
+		        <td scope="row" th:text="${coche.antiguedad}">Antiguedad</td>		             
+		        <td scope="row" th:text="${coche.rango}">Rango</td>
+		        <td scope="row" th:text="${coche.mensaje}">Mensaje</td>
 		        
-		        <td><a href="#" th:href="@{/eliminarCoche/{id}(id=${coche.id})}">Eliminar</a></td>
-		        <td><a href="#" th:href="@{/editarCoche/{id}(id=${coche.id})}">Editar</a></td>
+		        <td scope="row"><a href="#" th:href="@{/eliminarCoche/{id}(id=${coche.id})}">Eliminar</a></td>
+		        <td scope="row"><a href="#" th:href="@{/editarCoche/{id}(id=${coche.id})}">Editar</a></td>
 		      </tr>	
 		    </table>
 		</div>
 		</div>
-		
-		<form action="#" th:action="@{/addCoche}"  th:object="${coche}" method="post">
-    	
-	    	<p>Marca: <input type="text" th:field="*{marca}" placeholder="Inserte la marca de su coche"/></p>
-	    	<p>Color: <input type="text" th:field="*{color}" placeholder="Inserte el color de su coche"/></p>
-	    	<p>Antigüedad: <input type="number" th:field="*{antiguedad}" placeholder="Inserte la antigüedad de su coche"/></p>
-	    	<p>Rango: <input type="range" th:field="*{rango}" min="0" max="10"></p>
-	        
-	      	<p>
-		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
-					Mensaje de texto.
-				</textarea>
-	        </p>            
-	       
-	        <p>	
-	        	<input type="submit" value="Submit" /> 
-	        	<input type="reset" value="Reset" />
-	        </p>
-		</form>
+	  <div id="formulario">	
+      <form action="#" th:action="@{/addCoche}"  th:object="${coche}" method="post">
+         
+         <div class="form-group">
+            <label for="marca" class="mr-sm-2">Marca:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{marca}" placeholder="Introduce la marca de su coche" id="marca">
+         </div>
+
+         <div class="form-group">
+            <label for="color" class="mr-sm-2">Color:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{color}" placeholder="Introduce el color de su coche" id="color">
+         </div>
+
+         <div class="form-group">
+            <label for="antiguedad" class="mr-sm-2">Antigüedad:</label>
+            <input type="number" class="form-control mb-2 mr-sm-2" th:field="*{antiguedad}" placeholder="Introduce la antiguedad de su coche" id="antiguedad">
+         </div>
+
+         <div class="form-group">
+            <label for="formControlRange">Rango:</label>
+            <input type="range" class="form-control-range" id="formControlRange" th:field="*{rango}" min="0" max="10">
+         </div>
+
+         <div class="form-group">
+          <label for="comment">Más info:</label>
+          <textarea class="form-control" th:field="*{mensaje}" rows="5" id="comment" placeholder="Introduce un mensaje adicional"></textarea>     
+         </div>
+
+	      <div class="form-group">	
+	        	<button type="submit" value="Submit" class="btn btn-secondary btn-sm">Enviar</button>
+	        	<button type="reset" value="Reset" class="btn btn-secondary btn-sm">Borrar</button>
+	      </div>
+      </form>
+    </div>  
 </body>
 </html>

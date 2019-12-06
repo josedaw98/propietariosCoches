@@ -38,32 +38,50 @@
         </nav>
     </header>
 		
+		<div id="formulario">
 		<form action="#" th:action="@{/updatePropietario}"  th:object="${propietario}" method="post">
-    	
-	    	<p>Nombre: <input type="text" th:field="*{nombre}" placeholder="Inserte su nombre"/></p>
-	        <p>Edad: <input type="number" th:field="*{edad}"  placeholder="Inserte su edad"/></p>
-	        <p>Email: <input type="email" th:field="*{email}" placeholder="Inserte su email"/></p>
-	        
-	       <p>
-        	<select th:field="*{coche}">
-        		<option th:each="cocheOpt : ${coches}" th:value="${cocheOpt.id}" th:text="${cocheOpt.marca}"></option>
-        	</select>
-	        </p>
-	      
-	      	<p>
-		        <textarea th:field="*{mensaje}" rows="6" cols="20" placeholder="Inserte un mensaje adicional">
-					Mensaje de texto.
-				</textarea>
-	        </p>          
-	 
-	         <p>
-		        Carnet: <input type="checkbox" th:field="*{carnet}">
-	        </p>      
-	       
-	        <p>	
-	        	<input type="submit" value="Submit" /> 
-	        	<input type="reset" value="Reset" />
-	        </p>
+		
+			<div class="form-group">
+                <label for="nombre" class="mr-sm-2">Nombre:</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{nombre}" placeholder="Introduce su nombre" id="nombre">
+            </div>    
+                
+			<div class="form-group">
+                <label for="edad" class="mr-sm-2">Edad:</label>
+                <input type="number" class="form-control mb-2 mr-sm-2" th:field="*{edad}" placeholder="Introduce su edad" id="edad">
+            </div>
+            
+			<div class="form-group">
+                <label for="email" class="mr-sm-2">Email:</label>
+                <input type="email" class="form-control mb-2 mr-sm-2" th:field="*{email}" placeholder="Introduce su email" id="email">
+            </div>   
+                
+            <div class="form-group">    
+                <label for="sel1">Seleccione su coche:</label>
+                    <select class="form-control" id="sel1" th:field="*{coche}">
+                        <option th:each="cocheOpt : ${coches}" th:value="${cocheOpt.id}" th:text="${cocheOpt.marca}"></option>
+                    </select>	
+             </div>   
+                	
+			<div class="form-group">
+                <label for="comment">Más info:</label>
+                <textarea class="form-control" th:field="*{mensaje}" rows="5" id="comment" placeholder="Introduce un mensaje adicional"></textarea>
+			</div>
+			
+			<div class="form-group">
+	            <div class="form-check mb-2 mr-sm-2">
+	                <label class="form-check-label">
+	                  <input class="form-check-input" type="checkbox" checked data-toggle="toggle" th:field="*{carnet}"> Carnet
+	                  
+	                </label>
+	             </div>
+	        </div> 
+	             
+	       	<div class="form-group">	
+	        	<button type="submit" value="Submit" class="btn btn-secondary btn-sm">Enviar</button>
+	        	<button type="reset" value="Reset" class="btn btn-secondary btn-sm">Borrar</button>
+	        </div>
 		</form>
+		</div>
 </body>
 </html>
