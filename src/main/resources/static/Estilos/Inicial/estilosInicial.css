@@ -1,0 +1,9 @@
+body{
+    background-image: url("https://media.revistagq.com/photos/5ca5e602944b834654eb8fe6/master/w_1200,c_limit/los_10_coches_mas_caros_del_mundo_131086603.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+#titulo{
+    margin-top: 1em;
+    margin-left: 20%;
+}
