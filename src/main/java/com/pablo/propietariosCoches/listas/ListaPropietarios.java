@@ -63,6 +63,7 @@ public class ListaPropietarios {
 			// Y si no aparece, avanzo
 			else indice ++;
 		}
+		System.out.println(encontrado);
 		if(encontrado) return indice; else return -1;
 	}	
 	
@@ -125,8 +126,10 @@ public class ListaPropietarios {
 	 */
 	public void updatePropietario(PropietarioBean propietario) {
 		
+		
 		int posicion = buscarDondeEsta(propietario.getId());
 		lista.set(posicion, propietario);
+		
 	}
 	
 	

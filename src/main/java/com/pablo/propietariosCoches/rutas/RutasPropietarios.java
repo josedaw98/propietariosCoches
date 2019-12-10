@@ -62,14 +62,12 @@ public class RutasPropietarios {
 	public ModelAndView editarPropietario(@PathVariable Integer id) {
 
 		ModelAndView model = new ModelAndView();
-		
-		
-		model.addObject("coches",listaCoches.getDatos());
-		
 		PropietarioBean propietario = listaPropietarios.getPropietario(id);
+		
+		model.addObject("propietario",propietario);
+		model.addObject("coches",listaCoches.getDatos());
 
 		model.setViewName("Propietarios/editarPropietario");
-		model.addObject("propietario",propietario);
 		
 		return model; 	
 	}
@@ -77,11 +75,11 @@ public class RutasPropietarios {
 	@PostMapping("/updatePropietario")
 	public ModelAndView updatePropietario(@ModelAttribute PropietarioBean propietario) {
 		
+		
 		listaPropietarios.updatePropietario(propietario);
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:/propietarios");
-		
 		return model; 		
 		
 	}

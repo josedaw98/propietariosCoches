@@ -41,6 +41,8 @@
 		<div id="formulario">
 		<form action="#" th:action="@{/updatePropietario}"  th:object="${propietario}" method="post">
 		
+            <input hidden type="text" th:field="*{id}" />
+            
 			<div class="form-group">
                 <label for="nombre" class="mr-sm-2">Nombre:</label>
                 <input type="text" class="form-control mb-2 mr-sm-2" th:field="*{nombre}" placeholder="Introduce su nombre" id="nombre">
@@ -73,8 +75,8 @@
 				 	<input type="checkbox" class="custom-control-input" id="customSwitch1" th:field="*{carnet}">
 				 	<label class="custom-control-label" for="customSwitch1">Carnet </label>	
 				</div>
-	        </div>
-	             
+	        </div>   
+	          
 	       	<div class="form-group">	
 	        	<button type="submit" value="Submit" class="btn btn-secondary btn-sm">Enviar</button>
 	        	<button type="reset" value="Reset" class="btn btn-secondary btn-sm">Borrar</button>

@@ -55,6 +55,11 @@ public class PropietarioBean {
 	public void setCoche(String coche) {
 		this.coche = coche;
 	}
+	@Override
+	public String toString() {
+		return "PropietarioBean [nombre=" + nombre + ", email=" + email + ", modelo=" + modelo + ", mensaje=" + mensaje
+				+ ", coche=" + coche + ", id=" + id + ", edad=" + edad + ", carnet=" + carnet + "]";
+	}
 	
 	
 }
